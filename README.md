@@ -44,7 +44,7 @@
 
 ### for a single file
 - ```bash
-    ./export_fix.sh ./examples/src/exportNamed.js # check other files available
+  ./export_fix.sh ./examples/src/exportNamed.js # check other files available
   ```
 - ```bash
   ./export_fix.sh ./examples/src/sampleDir/mixedExports1.js  # check other files available
