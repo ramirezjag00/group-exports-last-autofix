@@ -1,0 +1,20 @@
+export default () => {
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+  console.log('Default Export');
+};
