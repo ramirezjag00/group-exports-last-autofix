@@ -1,7 +1,7 @@
 # **Export fixes** for `eslint-plugin-import` using `Bash`
 
 ## Why? 🤔
-- You're dealing with thousands of js/ts files with these and just want to make things prettier by putting exports at the bottom but there's no auto-fix yet like [this thread](https://github.com/import-js/eslint-plugin-import/issues/1871)
+- You're dealing with thousands of js/ts files with these syntaxes and just want to make things prettier by putting exports at the bottom but there's no autofix yet
 
 ## Rules to fix
 - [import/exports-last](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/exports-last.md)
@@ -9,7 +9,7 @@
 - [import/group-exports](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/group-exports.md)
 - [import/prefer-default-export](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md)
 
-## Before
+### Before
   - ```js
     export const foo = 'foo'
     export const bar = 'bar'
@@ -34,7 +34,7 @@
     export { default as FizzBuzz } from '../../../FizzBuzz';
     ```
 
-## After
+### After
 <img src="./assets/exportNamed.png" width="450"  />
 <img src="./assets/exportDefaultAnonymous.png" width="450"  />
 <img src="./assets/exportDefaultObject.png" width="450"  />
@@ -56,7 +56,7 @@
   ```
 
 ### note
-- if permission denied: `chmod 777 ./export_fix_all.sh` OR `chmod 777 ./export_fix.sh`
+- if permission denied: `chmod 777 ./export_fix_all.sh` OR `chmod 777 ./export_fix.sh` which are the two files you only need for your codebase
 - if available, execute prettier in your js/ts codebase after running the script for additional 💅
 
 ### to reset
@@ -65,6 +65,6 @@
 - just don't mess with the files from **examples/backup/*** 🤷
 
 
-### For enhancement
+## For enhancement
 - running `./export_fix_all.sh ./examples/src` will skip `./examples/sampleDir/*` files, but all js/ts files in /src will be sanitized
 - export_fix_all.sh [.js,jsx,ts,tsx] extension only checks 
