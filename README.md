@@ -8,6 +8,7 @@
 - [import/no-anonymous-default-export](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/no-anonymous-default-export.md)
 - [import/group-exports](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/group-exports.md)
 - [make aggregating modules valid in group-exports](https://github.com/import-js/eslint-plugin-import/pull/1472)
+- [import/prefer-default-export](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md)
 
 ### Before
   - ```js
@@ -33,12 +34,20 @@
     export { default as FooBar } from '../../FooBar';
     export { default as FizzBuzz } from '../../../FizzBuzz';
     ```
+  - ```js
+    export const singleFoo = 'singleFoo';
+    ```
+  - ```js
+    export { default as HelloWorld } from '../HelloWorld';
+    ```
 
 ### After
 <img src="./assets/exportNamed.png" width="450"  />
 <img src="./assets/exportDefaultAnonymous.png" width="450"  />
 <img src="./assets/exportDefaultObject.png" width="450"  />
 <img src="./assets/exportDefaultAggregate.png" width="450"  />
+<img src="./assets/exportNamedSingle.png" width="450"  />
+<img src="./assets/exportDefaultAggregateSingle.png" width="450"  />
 
 ## Usage / Testing
 > current supported files [.js,jsx,ts,tsx]
@@ -53,6 +62,11 @@
 ./export_fix.sh ./examples/src/sampleDir/mixedExports1.js
 ```
   *sanitize file with mixed syntaxes of export*
+
+```bash
+./export_fix.sh ./examples/src/sampleDir/exportNamedSingle.js
+```
+  *sanitize file with single named export to prefer default*
 ### for all files in a directory
 ```bash
 ./export_fix.sh ./examples/src/sampleDir
@@ -75,9 +89,6 @@
 - to avoid infinite loop, do not call `./export-fix.sh .`
 - if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
 - if available, execute prettier in your js/ts codebase after running the script for additional 💅
-
-## Autofix for enhancement
-- [import/prefer-default-export](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md)
 
 ## Sample - execute script for all files and subdirectories
 
