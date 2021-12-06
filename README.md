@@ -1,4 +1,4 @@
-# **Autofix** for `eslint-plugin-import` export syntaxes using `Bash`
+# **Autofix** for `eslint-plugin-import`: group export syntaxes at the bottom using `Bash`
 
 ## Why? 🤔
   You're dealing with thousands of js/ts files with these syntaxes and just want to make things prettier by putting exports at the bottom but there's no autofix from the library yet
