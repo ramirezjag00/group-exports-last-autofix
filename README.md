@@ -51,6 +51,15 @@
       await getComments();
       console.log('Default Export Async');
     };
+  - ```js
+    import SingleFoo from './SingleFoo';
+
+    export const foo = 'foo';
+    export const bar = 'bar';
+    export const fizz = 'fizz\n';
+    export const buzz = 'buzz';
+
+    export default SingleFoo;
     ```
 
 ### After
@@ -62,6 +71,7 @@
 <img src="./assets/exportDefaultAggregateSingle.png" width="450"  />
 <img src="./assets/exportDefaultAggregate2.png" width="450"  />
 <img src="./assets/exportDefaultAnonymousAsync.png" width="450"  />
+<img src="./assets/exportExistingDefaultAnonymous.png" width="450"  />
 
 ## Usage / Testing
 > current supported files [.js,jsx,ts,tsx]
