@@ -7,7 +7,7 @@
 - [import/exports-last](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/exports-last.md)
 - [import/no-anonymous-default-export](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/no-anonymous-default-export.md)
 - [import/group-exports](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/group-exports.md)
-- [import/prefer-default-export](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md)
+- [make aggregating modules valid in group-exports](https://github.com/import-js/eslint-plugin-import/pull/1472)
 
 ### Before
   - ```js
@@ -75,6 +75,9 @@
 - to avoid infinite loop, do not call `./export-fix.sh .`
 - if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
 - if available, execute prettier in your js/ts codebase after running the script for additional 💅
+
+## Autofix for enhancement
+- [import/prefer-default-export](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md)
 
 ## Sample - execute script for all files and subdirectories
 
