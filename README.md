@@ -41,7 +41,8 @@
 <img src="./assets/exportDefaultAggregate.png" width="450"  />
 
 ## Usage / Testing
-> current supported files [.js,jsx,ts,tsx] 
+> current supported files [.js,jsx,ts,tsx]
+
 ### for a single file
 - ```bash
   ./export_fix.sh ./examples/src/exportNamed.js # sanitize file
@@ -55,9 +56,9 @@
   ./export_fix.sh ./examples/src/sampleDir  # sanitize supported files available in directory
   ```
 
-### for all files and all sub-directories in a directory
+### for all files and all subdirectories in a directory
 - ```bash
-  ./export_fix.sh ./examples/src  # sanitize supported files and sub-directories available
+  ./export_fix.sh ./examples/src  # sanitize supported files and subdirectories available
   ```
 
 ### reset script
@@ -70,3 +71,11 @@
 - to avoid infinite loop, do not call `./export-fix.sh .`
 - if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
 - if available, execute prettier in your js/ts codebase after running the script for additional 💅
+
+## Sample - execute script for all files and subdirectories
+
+### unsanitized
+<img src="./assets/execute-fix.gif" width="400"  />
+
+### sanitized
+<img src="./assets/execute-on-sanitized.gif" width="400"  />
