@@ -66,5 +66,5 @@
 
 
 ## For enhancement
+- [x] export_fix.sh [.js,jsx,ts,tsx] extension only checks [#1](https://github.com/ramirezjag00/export-sanitize-script/pull/1)
 - [ ] running `./export_fix_all.sh ./examples/src` will skip `./examples/sampleDir/*` files, but all js/ts files in /src will be sanitized
-- [x] export_fix.sh [.js,jsx,ts,tsx] extension only checks
