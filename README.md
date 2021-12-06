@@ -52,23 +52,20 @@
 
 ### for all files in a directory
 - ```bash
-  ./export_fix_all.sh ./examples/src/sampleDir  # sanitize supported files available in directory
+  ./export_fix.sh ./examples/src/sampleDir  # sanitize supported files available in directory
   ```
 
 ### for all files and all sub-directories in a directory
 - ```bash
-  ./export_fix_all.sh ./examples/src  # sanitize supported files and sub-directories available
+  ./export_fix.sh ./examples/src  # sanitize supported files and sub-directories available
   ```
 
-### note
-- if permission denied: `chmod 777 ./export_fix_all.sh` OR `chmod 777 ./export_fix.sh` which are the two files you only need for your codebase
-- if available, execute prettier in your js/ts codebase after running the script for additional 💅
-
-### to reset
-
+### reset script
 - to reset **examples/src/*** files after overwriting: `./reset.sh`
 - just don't mess with the files from **examples/backup/*** 🤷
 
-## For enhancement
-- [x] export_fix.sh [.js,jsx,ts,tsx] extension only checks -- [merged #1](https://github.com/ramirezjag00/export-sanitize-script/pull/1)
-- [x] running `./export_fix_all.sh ./examples/src` will skip `./examples/sampleDir/*` files, but all js/ts files in /src will be sanitized -- [merged #2](https://github.com/ramirezjag00/export-sanitize-script/pull/2)
+### notes
+- script will skip any unsupported files or empty directories
+- to avoid infinite loop, do not call `./export-fix.sh .`
+- if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
+- if available, execute prettier in your js/ts codebase after running the script for additional 💅
