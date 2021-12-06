@@ -1,4 +1,4 @@
-# **Export fixes** for `eslint-plugin-import` using `Bash`
+# **Autofix** for `eslint-plugin-import` using `Bash`
 
 ## Why? 🤔
 - You're dealing with thousands of js/ts files with these syntaxes and just want to make things prettier by putting exports at the bottom but there's no autofix yet
