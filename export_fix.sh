@@ -79,6 +79,10 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
     bottom_export="export {$export_named_list $export_default_aggregate };"
     sanitized_code=$(cat $1 | sed "s/export //g")
     group_exports_last $1
+  elif [[ ! -z "$export_default_aggregate_2" ]] && [[ ! -z "$export_named_list" ]]; then
+    bottom_export="export { $export_default_aggregate_2 as default, $export_named_list };"
+    sanitized_code=$(cat $1 | sed "s/export { default }/import $export_default_aggregate_2/g" | sed "s/export //g")
+    group_exports_last $1 
   elif [[ ! -z "$export_default_aggregate_2" ]]; then
     bottom_export="export default $export_default_aggregate_2;"
     sanitized_code=$(cat $1 | sed "s/export { default }/import $export_default_aggregate_2/g")
