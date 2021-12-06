@@ -66,5 +66,5 @@
 
 
 ## For enhancement
-- running `./export_fix_all.sh ./examples/src` will skip `./examples/sampleDir/*` files, but all js/ts files in /src will be sanitized
-- export_fix_all.sh [.js,jsx,ts,tsx] extension only checks 
+- [ ] running `./export_fix_all.sh ./examples/src` will skip `./examples/sampleDir/*` files, but all js/ts files in /src will be sanitized
+- [x] export_fix.sh [.js,jsx,ts,tsx] extension only checks
