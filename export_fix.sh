@@ -53,7 +53,7 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
       export_default=$(echo $line | cut -d " " -f 3 | sed "s/.$//") 
       sanitized_code=$(cat $1 | sed "s~$line~~g")
       echo "$sanitized_code" > $1
-    elif [[ ${line} == *"$needle_export_default_anonymous"* ]] || [[ ${line} == *"$needle_export_default_object"* ]] || [[ ${line} == *"$needle_export_default_anonymous_async"* ]]; then
+    elif [[ ${line} == *"$needle_export_default_anonymous"* ]] || [[ ${line} == *"$needle_export_default_object"* ]] || [[ ${line} == *"$needle_export_default_anonymous_async"* ]] || [[ ${line} == "$needle_existing_export_default_anonymous"[a-z]*" => {" ]]; then
       if [[ $1 == *"/"* ]]; then
         export_default=$(echo ${1##*/} | cut -d "." -f 1)
       else
