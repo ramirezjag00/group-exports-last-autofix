@@ -48,7 +48,7 @@
   ./export_fix.sh ./examples/src/exportNamed.js # sanitize file
   ```
 - ```bash
-  ./export_fix.sh ./examples/src/sampleDir/mixedExports1.js  # sanitize file
+  ./export_fix.sh ./examples/src/sampleDir/mixedExports1.js  # sanitize file with mixed syntaxes of export
   ```
 
 ### for all files in a directory
