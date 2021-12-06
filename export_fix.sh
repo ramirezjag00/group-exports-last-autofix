@@ -15,6 +15,7 @@ fix_sub_directories() {
 
 needle_export_named="export const"
 needle_export_default_anonymous="export default ("
+needle_export_default_anonymous_async="export default async"
 needle_export_default_aggregated="export { default as"
 needle_export_default_aggregated_2="export { default }"
 needle_export_default_object="export default {"
@@ -47,7 +48,7 @@ scan_prefer_default() {
 if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name == *".ts"* ]] || [[ $file_name == *".tsx"* ]]; then
   echo -e "\\n⚙️  processing $1"
   while read -r line; do
-    if [[ ${line} == *"$needle_export_default_anonymous"* ]] || [[ ${line} == *"$needle_export_default_object"* ]]; then
+    if [[ ${line} == *"$needle_export_default_anonymous"* ]] || [[ ${line} == *"$needle_export_default_object"* ]] || [[ ${line} == *"$needle_export_default_anonymous_async"* ]]; then
       if [[ $1 == *"/"* ]]; then
         export_default=$(echo ${1##*/} | cut -d "." -f 1)
       else
