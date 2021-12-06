@@ -27,8 +27,8 @@ bottom_export=""
 named_exports_length=0
 
 group_exports_last() {
-  echo -e "$sanitized_code\\n" > $@
-  echo $bottom_export >> $@
+  echo "$sanitized_code" > $@
+  echo -e "\\n$bottom_export" >> $@
   echo $finished
 }
 
@@ -55,7 +55,7 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
       parsed_export=$(echo "$line" | cut -d " " -f 5)
       reshaped_import="import $parsed_export $(echo ${line##*\}})"
       sanitized_code=$(cat $1 | sed "s~${line}~${reshaped_import}~g")
-      echo -e "$sanitized_code\\n" > $1
+      echo "$sanitized_code" > $1
       export_default_aggregate="$export_default_aggregate $parsed_export,"
     elif [[ $line == *"$needle_export_named"* ]]; then
       parsed_export=$(echo "$line" | cut -d " " -f 3)
@@ -81,7 +81,7 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
     group_exports_last $1
   elif [[ ! -z "$export_default_aggregate" ]]; then
     scan_prefer_default $export_default_aggregate 
-    echo $bottom_export >> $1
+    echo -e "\\n$bottom_export" >> $1
     echo $finished
   elif [[ ! -z "$export_named_list" ]]; then
     scan_prefer_default $export_named_list
