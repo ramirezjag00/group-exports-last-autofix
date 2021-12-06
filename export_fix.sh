@@ -1,5 +1,16 @@
 #!/bin/bash
 
+fix_sub_directories() {
+  if [[ ! -z $@ ]]; then
+    echo "🗂  processing $@"
+    for FILE in $@/*; do ./export_fix.sh $FILE; done
+    echo -e "\\n $@ directory, DONE! 🚀"
+  else
+    echo "❌  Missing argument: Forgot to pass directory to expand
+  usage: ./export_fix_all.sh ./examples/src/sampleDir"
+  fi
+}
+
 needle_export_named="export const"
 needle_export_default_anonymous="export default () =>"
 needle_export_default_aggregated="export { default as"
@@ -70,7 +81,7 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
     echo -e "\\n⚠️  $1 is already sanitized ⚠️\\n"
   fi
 elif [[ file_name != *'.'* ]]; then
-  ./export_fix_all.sh $1
+  fix_sub_directories $1
 else
   echo -e "\\n⚠️  $1 is not a .js,.jsx,.ts,.tsx file ⚠️\\n"
 fi
