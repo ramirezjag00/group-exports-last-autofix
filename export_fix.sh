@@ -24,11 +24,22 @@ finished="✅  $1 DONE!"
 file_name=$(echo ${1##*/})
 sanitized_code=""
 bottom_export=""
+named_exports_length=0
 
 group_exports_last() {
   echo -e "$sanitized_code\\n" > $@
   echo $bottom_export >> $@
   echo $finished
+}
+
+scan_prefer_default() {
+  named_exports_length=$(echo $@ | tr -cd ',' | wc -c)
+  if [[ $named_exports_length -gt 1 ]]; then
+    bottom_export="export {$@ };"
+  else
+    parsed_export=$(echo "$@" | cut -d "," -f 1)
+    bottom_export="export default $parsed_export;"
+  fi 
 }
 
 if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name == *".ts"* ]] || [[ $file_name == *".tsx"* ]]; then
@@ -69,11 +80,11 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
     sanitized_code=$(cat $1 | sed "s/export default/const $export_default =/g")
     group_exports_last $1
   elif [[ ! -z "$export_default_aggregate" ]]; then
-    bottom_export="export {$export_default_aggregate };"
+    scan_prefer_default $export_default_aggregate 
     echo $bottom_export >> $1
     echo $finished
   elif [[ ! -z "$export_named_list" ]]; then
-    bottom_export="export {$export_named_list };"
+    scan_prefer_default $export_named_list
     sanitized_code=$(cat $1 | sed "s/export //g")
     group_exports_last $1
   else
