@@ -46,7 +46,7 @@
     export { default } from './SingleFoo'
     ```
   - ```js
-    export default async () => {
+    export default async () => { // file name: exportDefaultAnonymousAsync.js
       console.log('Default Export Async');
       await getComments();
       console.log('Default Export Async');
@@ -61,6 +61,11 @@
 
     export default SingleFoo;
     ```
+  - ```js
+    export default params => { // file name: exportDefaultAnonymousSingleParam.js
+      console.log(params);
+    };
+    ```
 
 ### After
 <img src="./assets/exportNamed.png" width="450"  />
@@ -72,6 +77,7 @@
 <img src="./assets/exportDefaultAggregate2.png" width="450"  />
 <img src="./assets/exportDefaultAnonymousAsync.png" width="450"  />
 <img src="./assets/exportExistingDefaultAnonymous.png" width="450"  />
+<img src="./assets/exportDefaultAnonymousSingleParam.png" width="450"  />
 
 ## Usage / Testing
 > current supported files [.js,jsx,ts,tsx]
