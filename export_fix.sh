@@ -35,7 +35,7 @@ group_exports_last() {
 scan_prefer_default() {
   named_exports_length=$(echo $@ | tr -cd ',' | wc -c)
   if [[ $named_exports_length -gt 1 ]]; then
-    bottom_export="export {$@ };"
+    bottom_export="export { $@ };"
   else
     parsed_export=$(echo "$@" | cut -d "," -f 1)
     bottom_export="export default $parsed_export;"
