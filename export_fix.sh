@@ -22,6 +22,14 @@ export_default=""
 export_default_aggregate=""
 finished="✅  $1 DONE!"
 file_name=$(echo ${1##*/})
+sanitized_code=""
+bottom_export=""
+
+add_bottom_export() {
+  echo -e "$sanitized_code\\n" > $@
+  echo $bottom_export >> $@
+  echo $finished
+}
 
 if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name == *".ts"* ]] || [[ $file_name == *".tsx"* ]]; then
   echo -e "\\n⚙️  processing $1"
@@ -47,27 +55,19 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
   if [[ ! -z "$export_default" ]] && [[ ! -z "$export_named_list" ]]; then
     bottom_export="export { $export_default as default, $export_named_list };"
     sanitized_code=$(cat $1 | sed "s/export default/const $export_default =/g" | sed "s/export //g")
-    echo -e "$sanitized_code\\n" > $1
-    echo $bottom_export >> $1
-    echo $finished
+    add_bottom_export $1
   elif [[ ! -z "$export_default" ]] && [[ ! -z "$export_default_aggregate" ]]; then
     bottom_export="export { $export_default as default, $export_default_aggregate };"
     sanitized_code=$(cat $1 | sed "s/export default/const $export_default =/g")
-    echo -e "$sanitized_code\\n" > $1
-    echo $bottom_export >> $1
-    echo $finished
+    add_bottom_export $1
   elif [[ ! -z "$export_named_list" ]] && [[ ! -z "$export_default_aggregate" ]]; then
     bottom_export="export {$export_named_list $export_default_aggregate };"
     sanitized_code=$(cat $1 | sed "s/export //g")
-    echo -e "$sanitized_code\\n" > $1
-    echo "$bottom_export" >> $1
-    echo $finished
+    add_bottom_export $1
   elif [[ ! -z "$export_default" ]]; then
     bottom_export="export default $export_default;"
     sanitized_code=$(cat $1 | sed "s/export default/const $export_default =/g")
-    echo -e "$sanitized_code\\n" > $1
-    echo $bottom_export >> $1
-    echo $finished
+    add_bottom_export $1
   elif [[ ! -z "$export_default_aggregate" ]]; then
     bottom_export="export {$export_default_aggregate };"
     echo $bottom_export >> $1
@@ -75,9 +75,7 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
   elif [[ ! -z "$export_named_list" ]]; then
     bottom_export="export {$export_named_list };"
     sanitized_code=$(cat $1 | sed "s/export //g")
-    echo -e "$sanitized_code\\n" > $1
-    echo "$bottom_export" >> $1
-    echo $finished
+    add_bottom_export $1
   else
     echo -e "\\n⚠️  $1 is already sanitized ⚠️\\n"
   fi
