@@ -49,7 +49,7 @@ scan_prefer_default() {
 if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name == *".ts"* ]] || [[ $file_name == *".tsx"* ]]; then
   echo -e "\\n⚙️  processing $1"
   while read -r line; do
-    if [[ ${line} == "$needle_existing_export_default_anonymous"[A-Z]* ]]; then
+    if ([[ ${line} == "$needle_existing_export_default_anonymous"[A-Z]* ]] && [[ $(cat ${1}) == *"$needle_export_named"* ]]) || ([[ ${line} == "$needle_existing_export_default_anonymous"[A-Z]* ]] && [[ ! -z "$export_default_aggregate" ]]); then
       export_default=$(echo $line | cut -d " " -f 3 | sed "s/.$//") 
       sanitized_code=$(cat $1 | sed "s~$line~~g")
       echo "$sanitized_code" > $1
