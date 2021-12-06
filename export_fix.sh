@@ -51,17 +51,17 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
     echo -e "$sanitized_code\\n" > $1
     echo "$bottom_export" >> $1
     echo $finished
-  elif [ ! -z "$export_default" ]; then
+  elif [[ ! -z "$export_default" ]]; then
     bottom_export="export default $export_default;"
     sanitized_code=$(cat $1 | sed "s/export default/const $export_default =/g")
     echo -e "$sanitized_code\\n" > $1
     echo $bottom_export >> $1
     echo $finished
-  elif [ ! -z "$export_default_aggregate" ]; then
+  elif [[ ! -z "$export_default_aggregate" ]]; then
     bottom_export="export {$export_default_aggregate };"
     echo $bottom_export >> $1
     echo $finished
-  elif [ ! -z "$export_named_list" ]; then
+  elif [[ ! -z "$export_named_list" ]]; then
     bottom_export="export {$export_named_list };"
     sanitized_code=$(cat $1 | sed "s/export //g")
     echo -e "$sanitized_code\\n" > $1
