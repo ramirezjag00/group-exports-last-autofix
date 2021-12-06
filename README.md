@@ -44,28 +44,32 @@
 > current supported files [.js,jsx,ts,tsx]
 
 ### for a single file
-- ```bash
-  ./export_fix.sh ./examples/src/exportNamed.js # sanitize file
-  ```
-- ```bash
-  ./export_fix.sh ./examples/src/sampleDir/mixedExports1.js  # sanitize file with mixed syntaxes of export
-  ```
+```bash
+./export_fix.sh ./examples/src/exportNamed.js
+```
+  *sanitize supported file*
 
+```bash
+./export_fix.sh ./examples/src/sampleDir/mixedExports1.js
+```
+  *sanitize file with mixed syntaxes of export*
 ### for all files in a directory
-- ```bash
-  ./export_fix.sh ./examples/src/sampleDir  # sanitize supported files available in directory
-  ```
+```bash
+./export_fix.sh ./examples/src/sampleDir
+```
+  *sanitize supported files available in specified directory*
 
 ### for all files and all subdirectories in a directory
-- ```bash
-  ./export_fix.sh ./examples/src  # sanitize supported files and subdirectories available
-  ```
+```bash
+./export_fix.sh ./examples/src
+```
+  *sanitize supported files and subdirectories available in src*
 
-### reset script
+## reset script
 - to reset **examples/src/*** files after overwriting: `./reset.sh`
 - just don't mess with the files from **examples/backup/*** 🤷
 
-### notes
+## Notes
 - script will skip any unsupported files or empty directories
 - script will notify if a file is already sanitized with the given syntaxes in `Before` section
 - to avoid infinite loop, do not call `./export-fix.sh .`
