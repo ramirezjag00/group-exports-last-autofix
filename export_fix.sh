@@ -16,10 +16,12 @@ fix_sub_directories() {
 needle_export_named="export const"
 needle_export_default_anonymous="export default ("
 needle_export_default_aggregated="export { default as"
+needle_export_default_aggregated_2="export { default }"
 needle_export_default_object="export default {"
 export_named_list=""
 export_default=""
 export_default_aggregate=""
+export_default_aggregate_2=""
 finished="✅  $1 DONE!"
 file_name=$(echo ${1##*/})
 sanitized_code=""
@@ -57,6 +59,8 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
       sanitized_code=$(cat $1 | sed "s~${line}~${reshaped_import}~g")
       echo "$sanitized_code" > $1
       export_default_aggregate="$export_default_aggregate $parsed_export,"
+    elif [[ $line == *"$needle_export_default_aggregated_2"* ]]; then
+      export_default_aggregate_2=$(echo ${line##*/} | sed "s/.$//")
     elif [[ $line == *"$needle_export_named"* ]]; then
       parsed_export=$(echo "$line" | cut -d " " -f 3)
       export_named_list="$export_named_list $parsed_export,"
@@ -74,6 +78,10 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
   elif [[ ! -z "$export_named_list" ]] && [[ ! -z "$export_default_aggregate" ]]; then
     bottom_export="export {$export_named_list $export_default_aggregate };"
     sanitized_code=$(cat $1 | sed "s/export //g")
+    group_exports_last $1
+  elif [[ ! -z "$export_default_aggregate_2" ]]; then
+    bottom_export="export default $export_default_aggregate_2;"
+    sanitized_code=$(cat $1 | sed "s/export { default }/import $export_default_aggregate_2/g")
     group_exports_last $1
   elif [[ ! -z "$export_default" ]]; then
     bottom_export="export default $export_default;"
