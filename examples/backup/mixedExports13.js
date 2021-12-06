@@ -1,9 +1,7 @@
-// named
-export const foo = 'foo';
-export const bar = 'bar';
-export const fizz = 'fizz\n';
-export const buzz = 'buzz';
-// aggregated
+export default params => {
+  console.log(params);
+};
+
 export { default as HelloWorld } from '../HelloWorld';
 export { default as FooBar } from '../../FooBar';
 export { default as FizzBuzz } from '../../../FizzBuzz';

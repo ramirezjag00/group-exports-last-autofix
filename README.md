@@ -12,8 +12,10 @@
 
 ### Before
   - ```js
-    export const foo = 'foo'
-    export const bar = 'bar'
+    export const foo = 'foo';
+    export const bar = 'bar';
+    export const fizz = 'fizz\n';
+    export const buzz = 'buzz';
     ```
   - ```js
     export default () => { // file name: HelloComponent.js
@@ -40,6 +42,30 @@
   - ```js
     export { default as HelloWorld } from '../HelloWorld';
     ```
+  - ```js
+    export { default } from './SingleFoo'
+    ```
+  - ```js
+    export default async () => { // file name: exportDefaultAnonymousAsync.js
+      console.log('Default Export Async');
+      await getComments();
+      console.log('Default Export Async');
+    };
+  - ```js
+    import SingleFoo from './SingleFoo';
+
+    export const foo = 'foo';
+    export const bar = 'bar';
+    export const fizz = 'fizz\n';
+    export const buzz = 'buzz';
+
+    export default SingleFoo;
+    ```
+  - ```js
+    export default params => { // file name: exportDefaultAnonymousSingleParam.js
+      console.log(params);
+    };
+    ```
 
 ### After
 <img src="./assets/exportNamed.png" width="450"  />
@@ -48,6 +74,10 @@
 <img src="./assets/exportDefaultAggregate.png" width="450"  />
 <img src="./assets/exportNamedSingle.png" width="450"  />
 <img src="./assets/exportDefaultAggregateSingle.png" width="450"  />
+<img src="./assets/exportDefaultAggregate2.png" width="450"  />
+<img src="./assets/exportDefaultAnonymousAsync.png" width="450"  />
+<img src="./assets/exportExistingDefaultAnonymous.png" width="450"  />
+<img src="./assets/exportDefaultAnonymousSingleParam.png" width="450"  />
 
 ## Usage / Testing
 > current supported files [.js,jsx,ts,tsx]
