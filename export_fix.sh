@@ -14,7 +14,7 @@ fix_sub_directories() {
 }
 
 needle_export_named="export const"
-needle_export_default_anonymous="export default () =>"
+needle_export_default_anonymous="export default ("
 needle_export_default_aggregated="export { default as"
 needle_export_default_object="export default {"
 export_named_list=""
