@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# respository: https://github.com/ramirezjag00/export-sanitize-script 
+
 fix_sub_directories() {
   if [[ ! -z $@ ]]; then
-    echo "🗂  processing $@"
+    echo -e "\\n🗂  processing $@"
     for FILE in $@/*; do ./export_fix.sh $FILE; done
     echo -e "\\n $@ directory, DONE! 🚀"
   else
@@ -21,9 +23,8 @@ export_default_aggregate=""
 finished="✅  $1 DONE!"
 file_name=$(echo ${1##*/})
 
-echo -e "\\n⚙️  processing $1"
-
 if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name == *".ts"* ]] || [[ $file_name == *".tsx"* ]]; then
+  echo -e "\\n⚙️  processing $1"
   while read -r line; do
     if [[ ${line} == *"$needle_export_default_anonymous"* ]] || [[ ${line} == *"$needle_export_default_object"* ]]; then
       if [[ $1 == *"/"* ]]; then
