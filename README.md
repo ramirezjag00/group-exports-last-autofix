@@ -41,18 +41,23 @@
 <img src="./assets/exportDefaultAggregate.png" width="450"  />
 
 ## Usage / Testing
-
+> current supported files [.js,jsx,ts,tsx] 
 ### for a single file
 - ```bash
-  ./export_fix.sh ./examples/src/exportNamed.js # check other files available
+  ./export_fix.sh ./examples/src/exportNamed.js # sanitize file
   ```
 - ```bash
-  ./export_fix.sh ./examples/src/sampleDir/mixedExports1.js  # check other files available
+  ./export_fix.sh ./examples/src/sampleDir/mixedExports1.js  # sanitize file
   ```
 
 ### for all files in a directory
 - ```bash
-  ./export_fix_all.sh ./examples/src/sampleDir  # check other files available
+  ./export_fix_all.sh ./examples/src/sampleDir  # sanitize supported files available in directory
+  ```
+
+### for all files and all sub-directories in a directory
+- ```bash
+  ./export_fix_all.sh ./examples/src  # sanitize supported files and sub-directories available
   ```
 
 ### note
@@ -64,7 +69,6 @@
 - to reset **examples/src/*** files after overwriting: `./reset.sh`
 - just don't mess with the files from **examples/backup/*** 🤷
 
-
 ## For enhancement
-- [x] export_fix.sh [.js,jsx,ts,tsx] extension only checks [#1](https://github.com/ramirezjag00/export-sanitize-script/pull/1)
-- [ ] running `./export_fix_all.sh ./examples/src` will skip `./examples/sampleDir/*` files, but all js/ts files in /src will be sanitized
+- [x] export_fix.sh [.js,jsx,ts,tsx] extension only checks -- [merged #1](https://github.com/ramirezjag00/export-sanitize-script/pull/1)
+- [x] running `./export_fix_all.sh ./examples/src` will skip `./examples/sampleDir/*` files, but all js/ts files in /src will be sanitized -- [merged #2](https://github.com/ramirezjag00/export-sanitize-script/pull/2)
