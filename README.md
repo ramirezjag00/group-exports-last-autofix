@@ -42,6 +42,9 @@
   - ```js
     export { default as HelloWorld } from '../HelloWorld';
     ```
+  - ```js
+    export { default } from './SingleFoo'
+    ```
 
 ### After
 <img src="./assets/exportNamed.png" width="450"  />
@@ -50,6 +53,7 @@
 <img src="./assets/exportDefaultAggregate.png" width="450"  />
 <img src="./assets/exportNamedSingle.png" width="450"  />
 <img src="./assets/exportDefaultAggregateSingle.png" width="450"  />
+<img src="./assets/exportDefaultAggregate2.png" width="450"  />
 
 ## Usage / Testing
 > current supported files [.js,jsx,ts,tsx]
