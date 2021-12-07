@@ -4,6 +4,8 @@
   You're dealing with thousands of js/ts files with these syntaxes and just want to make things prettier by putting exports at the bottom but there's no autofix from the library yet
 
 ## Rules to fix
+> for mixed export list + an export default: check `./examples/src/mixedExports*.js` or create your own mixed export syntaxes based off of `Before` section to test
+
 - [import/exports-last](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/exports-last.md)
 - [import/no-anonymous-default-export](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/no-anonymous-default-export.md)
 - [import/group-exports](https://github.com/import-js/eslint-plugin-import/blob/v2.25.3/docs/rules/group-exports.md)
@@ -152,7 +154,6 @@
 ## Notes
 - script will skip any unsupported files or empty directories
 - script will notify if a file is already sanitized with the given syntaxes in `Before` section
-- for mixed export list + an export default: check `./examples/src/mixedExports*.js` or create your own mixed export syntaxes based off of `Before` section to test
 - to avoid infinite loop, do not call `./export-fix.sh .`
 - if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
 - if available, execute prettier in your js/ts codebase after running the script for additional 💅
