@@ -51,9 +51,14 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
   echo -e "\\n⚙️  processing $1"
   while read -r line; do
     if [[ ${line} == *"$needle_export_function"* ]]; then
-      if [[ ${line} == "export default $need_export_function (" ]]; then
-        echo 1
-        echo ${line}
+      if [[ ${line} == "export default $needle_export_function ("* ]]; then
+        if [[ $1 == *"/"* ]]; then
+          export_default=$(echo ${1##*/} | cut -d "." -f 1)
+        else
+          export_default=$(echo $1 | cut -d "." -f 1)
+        fi
+        sanitized_code=$(cat $1 | sed "s/export default $needle_export_function/const $export_default =/g" | sed "s/) {/) => {/g")
+        echo "$sanitized_code" > $1
       elif [[ ${line} == "export default $needle_export_function "* ]]; then
         parsed_export=$(echo "$line" | cut -d " " -f 4 | cut -d "(" -f 1)
         sanitized_code=$(cat $1 | sed "s/export default $needle_export_function $parsed_export/const $parsed_export = /g" | sed "s/) {/) => {/g")
