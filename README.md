@@ -66,6 +66,29 @@
       console.log(params);
     };
     ```
+  - ```js
+    export function foo() {
+      console.log('hello');
+    };
+
+    export function bar(hello = '') {
+      console.log(hello);
+    };
+
+    export function fizz(
+      hello = '',
+      world = ''
+    ) {
+      console.log(`${hello} ${world}`);
+    };
+
+    export function buzz({
+      hello = '',
+      world = ''
+    }) {
+      console.log(`${hello} ${world}`);
+    };
+    ```
 
 ### After
 <img src="./assets/exportNamed.png" width="450"  />
@@ -78,6 +101,7 @@
 <img src="./assets/exportDefaultAnonymousAsync.png" width="450"  />
 <img src="./assets/exportExistingDefaultAnonymous.png" width="450"  />
 <img src="./assets/exportDefaultAnonymousSingleParam.png" width="450"  />
+<img src="./assets/exportFunction.png" width="450"  />
 
 ## Usage / Testing
 > current supported files [.js,jsx,ts,tsx]
