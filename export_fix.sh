@@ -16,6 +16,7 @@ fix_sub_directories() {
 needle_export_named="export const"
 needle_export_default_anonymous="export default ("
 needle_existing_export_default_anonymous="export default "
+needle_export_function="function"
 needle_export_default_anonymous_async="export default async"
 needle_export_default_aggregated="export { default as"
 needle_export_default_aggregated_2="export { default }"
@@ -49,7 +50,27 @@ scan_prefer_default() {
 if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name == *".ts"* ]] || [[ $file_name == *".tsx"* ]]; then
   echo -e "\\n⚙️  processing $1"
   while read -r line; do
-    if ([[ ${line} == "$needle_existing_export_default_anonymous"[A-Z]* ]] && [[ $(cat ${1}) == *"$needle_export_named"* ]]) || ([[ ${line} == "$needle_existing_export_default_anonymous"[A-Z]* ]] && [[ ! -z "$export_default_aggregate" ]]); then
+    if [[ ${line} == *"$needle_export_function"* ]]; then
+      if [[ ${line} == "export default $needle_export_function ("* ]]; then
+        if [[ $1 == *"/"* ]]; then
+          export_default=$(echo ${1##*/} | cut -d "." -f 1)
+        else
+          export_default=$(echo $1 | cut -d "." -f 1)
+        fi
+        sanitized_code=$(cat $1 | sed "s/export default $needle_export_function/const $export_default =/g" | sed "s/) {/) => {/g")
+        echo "$sanitized_code" > $1
+      elif [[ ${line} == "export default $needle_export_function "* ]]; then
+        parsed_export=$(echo "$line" | cut -d " " -f 4 | cut -d "(" -f 1)
+        sanitized_code=$(cat $1 | sed "s/export default $needle_export_function $parsed_export/const $parsed_export = /g" | sed "s/) {/) => {/g")
+        echo "$sanitized_code" > $1
+        export_default=$(echo $parsed_export)
+      elif [[ ${line} == "export $needle_export_function "* ]]; then
+        parsed_export=$(echo "$line" | cut -d " " -f 3 | cut -d "(" -f 1)
+        sanitized_code=$(cat $1 | sed "s/export $needle_export_function $parsed_export/const $parsed_export = /g" | sed "s/) {/) => {/g")
+        echo "$sanitized_code" > $1
+        export_named_list="$export_named_list $parsed_export,"
+      fi
+    elif ([[ ${line} == "$needle_existing_export_default_anonymous"[A-Z]* ]] && [[ $(cat ${1}) == *"$needle_export_named"* ]]) || ([[ ${line} == "$needle_existing_export_default_anonymous"[A-Z]* ]] && [[ ! -z "$export_default_aggregate" ]]); then
       export_default=$(echo $line | cut -d " " -f 3 | sed "s/.$//") 
       sanitized_code=$(cat $1 | sed "s~$line~~g")
       echo "$sanitized_code" > $1
