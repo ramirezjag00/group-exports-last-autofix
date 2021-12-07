@@ -152,6 +152,7 @@
 ## Notes
 - script will skip any unsupported files or empty directories
 - script will notify if a file is already sanitized with the given syntaxes in `Before` section
+- for mixed export list + an export default: check `./examples/src/mixedExports*.js` or create your own mixed export syntaxes based off of `Before` section to test
 - to avoid infinite loop, do not call `./export-fix.sh .`
 - if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
 - if available, execute prettier in your js/ts codebase after running the script for additional 💅
