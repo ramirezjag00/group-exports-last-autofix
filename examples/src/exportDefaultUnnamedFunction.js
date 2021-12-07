@@ -1,5 +1,3 @@
-const exportDefaultUnnamedFunction = () => {
+export default function () {
   console.log('hello');
 };
-
-export default exportDefaultUnnamedFunction;
