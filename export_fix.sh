@@ -55,8 +55,10 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
         echo 1
         echo ${line}
       elif [[ ${line} == "export default $needle_export_function "* ]]; then
-        echo 2
-        echo ${line}
+        parsed_export=$(echo "$line" | cut -d " " -f 4 | cut -d "(" -f 1)
+        sanitized_code=$(cat $1 | sed "s/export default $needle_export_function $parsed_export/const $parsed_export = /g" | sed "s/) {/) => {/g")
+        echo "$sanitized_code" > $1
+        export_default=$(echo $parsed_export)
       elif [[ ${line} == "export $needle_export_function "* ]]; then
         parsed_export=$(echo "$line" | cut -d " " -f 3 | cut -d "(" -f 1)
         sanitized_code=$(cat $1 | sed "s/export $needle_export_function $parsed_export/const $parsed_export = /g" | sed "s/) {/) => {/g")
