@@ -1,1 +1,1 @@
-export { default } from './SingleFoo'
+export { default } from './SingleFoo';
