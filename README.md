@@ -157,7 +157,7 @@
 - supports parsing codebase with lowercase/uppercase const/function naming convention
 - supports parsing codebase with or without semicolon (by default, generated bottom export will have a semicolon)
 - supports parsing codebase with single quotes or double quotes
-- to avoid infinite loop, do not call `./export-fix.sh .`
+- to avoid infinite loop, do not call `./export_fix.sh .`
 - if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
 - if available, execute your eslint then prettier in your codebase after running the script for additional 💅
 
