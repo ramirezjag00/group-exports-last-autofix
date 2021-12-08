@@ -87,7 +87,7 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
       echo "$sanitized_code" > $1
       export_default_aggregate="$export_default_aggregate $parsed_export,"
     elif [[ $line == *"$needle_export_default_aggregated_2"* ]]; then
-      export_default_aggregate_2=$(echo ${line##*/} | cut -d "'" -f 1)
+      export_default_aggregate_2=$(echo ${line##*/} | cut -d "'" -f 1 | cut -d "\"" -f 1)
     elif [[ $line == *"$needle_export_named"* ]]; then
       parsed_export=$(echo "$line" | cut -d " " -f 3)
       export_named_list="$export_named_list $parsed_export,"
