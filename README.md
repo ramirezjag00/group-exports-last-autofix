@@ -162,12 +162,9 @@
 - if available, execute your eslint then prettier in your codebase after running the script for additional 💅
 
 ## For enhancement
-- `export default PushNotification.configure({
-  foo,
-  bar,
-  fizz,
-  buzz,
-})`
+- `export default SomeLibrary.configure({ foo, bar, fizz, buzz, })`
+- `export type fooType = string`
+- `export interface IFoo { foo: string }`
 
 ## Sample - execute script for all files and subdirectories
 ### unsanitized
