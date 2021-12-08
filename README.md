@@ -152,14 +152,24 @@
 - just don't mess with the files from **examples/backup/*** 🤷
 
 ## Notes
-- script will skip any unsupported files or empty directories
-- script will notify if a file is already sanitized with the given syntaxes in `Before` section
+- will skip any unsupported files or empty directories
+- will notify if a file is already sanitized with the given syntaxes in `Before` section
+- supports parsing codebase with lowercase/uppercase const/function naming convention
+- supports parsing codebase with or without semicolon (by default, generated bottom export will have a semicolon)
+- supports parsing codebase with single quotes or double quotes
 - to avoid infinite loop, do not call `./export-fix.sh .`
 - if permission denied: `chmod 777 ./export_fix.sh` which is the only file you need for your codebase located in the root
 - if available, execute your eslint then prettier in your codebase after running the script for additional 💅
 
-## Sample - execute script for all files and subdirectories
+## For enhancement
+- `export default PushNotification.configure({
+  foo,
+  bar,
+  fizz,
+  buzz,
+})`
 
+## Sample - execute script for all files and subdirectories
 ### unsanitized
 <img src="./assets/execute-fix.gif" width="400"  />
 
