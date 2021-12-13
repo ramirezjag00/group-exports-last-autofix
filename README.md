@@ -25,6 +25,11 @@
     };
     ```
   - ```js
+    import foo from './foo';
+
+    export { foo };
+    ```
+  - ```js
     import { one, two, three } from './number';
 
     export default { // file name: numbers.js
@@ -111,6 +116,7 @@
 ### After
 <img src="./assets/exportNamed.png" width="450"  />
 <img src="./assets/exportDefaultAnonymous.png" width="450"  />
+<img src="./assets/exportNamedSingle2.png" width="450"  />
 <img src="./assets/exportDefaultObject.png" width="450"  />
 <img src="./assets/exportDefaultAggregate.png" width="450"  />
 <img src="./assets/exportNamedSingle.png" width="450"  />
@@ -172,7 +178,6 @@
 - `export default SomeLibrary.configure({ foo, bar, fizz, buzz, })`
 - `export type fooType = string`
 - `export interface IFoo { foo: string }`
-- `export { fooFunc }`
 
 ## Sample - execute script for all files and subdirectories
 ### unsanitized
