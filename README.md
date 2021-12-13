@@ -67,12 +67,12 @@
     export default params => { // file name: exportDefaultAnonymousSingleParam.js
       console.log(params);
     };
-
-    // OR
-    // export default payload => ({
-    //  type: 'UPDATE_FOO',
-    //  payload,
-    // });
+    ```
+  - ```js
+    export default payload => ({ // file name: exportDefaultAnonSingleParam2.js
+      type: 'UPDATE_FOO',
+      payload,
+    });
     ```
   - ```js
     export function foo() {
@@ -119,6 +119,7 @@
 <img src="./assets/exportDefaultAnonymousAsync.png" width="450"  />
 <img src="./assets/exportExistingDefaultAnonymous.png" width="450"  />
 <img src="./assets/exportDefaultAnonymousSingleParam.png" width="450"  />
+<img src="./assets/exportDefaultAnonSingleParam2.png" width="450"  />
 <img src="./assets/exportFunction.png" width="450"  />
 <img src="./assets/exportDefaultFunction.png" width="450"  />
 <img src="./assets/exportDefaultUnnamedFunction.png" width="450"  />
