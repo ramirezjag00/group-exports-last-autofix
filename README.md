@@ -165,6 +165,7 @@
 - `export default SomeLibrary.configure({ foo, bar, fizz, buzz, })`
 - `export type fooType = string`
 - `export interface IFoo { foo: string }`
+- `export { fooFunc }`
 
 ## Sample - execute script for all files and subdirectories
 ### unsanitized
