@@ -67,6 +67,12 @@
     export default params => { // file name: exportDefaultAnonymousSingleParam.js
       console.log(params);
     };
+
+    // OR
+    // export default payload => ({
+    //  type: 'UPDATE_FOO',
+    //  payload,
+    // });
     ```
   - ```js
     export function foo() {
