@@ -14,6 +14,7 @@ fix_sub_directories() {
 }
 
 needle_export_named="export const"
+needle_export_named_single="export {"
 needle_export_default_anonymous="export default ("
 needle_existing_export_default_anonymous="export default "
 needle_export_function="function"
@@ -91,6 +92,10 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
     elif [[ $line == *"$needle_export_named"* ]]; then
       parsed_export=$(echo "$line" | cut -d " " -f 3)
       export_named_list="$export_named_list $parsed_export,"
+    elif [[ $line != *","* ]] && [[ $line != *"default"* ]] && [[ $line == "$needle_export_named_single"* ]]; then
+      export_named_list=$(echo "$line" | cut -d " " -f 3)
+      sanitized_code=$(cat $1 | sed "s~$line~~g")
+      echo "$sanitized_code" > $1
     fi
   done < <(grep "export" <<< cat $1)
 
