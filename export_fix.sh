@@ -93,7 +93,8 @@ if [[ $file_name == *".js"* ]] || [[ $file_name == *".jsx"* ]] || [[ $file_name 
       parsed_export=$(echo "$line" | cut -d " " -f 3)
       export_named_list="$export_named_list $parsed_export,"
     elif [[ $line != *","* ]] && [[ $line != *"default"* ]] && [[ $line == "$needle_export_named_single"* ]]; then
-      export_named_list=$(echo "$line" | cut -d " " -f 3)
+      parsed_export=$(echo "$line" | cut -d " " -f 3)
+      export_named_list="$export_named_list $parsed_export,"
       sanitized_code=$(cat $1 | sed "s~$line~~g")
       echo "$sanitized_code" > $1
     fi
