@@ -178,6 +178,27 @@
 - `export default SomeLibrary.configure({ foo, bar, fizz, buzz, })`
 - `export type fooType = string`
 - `export interface IFoo { foo: string }`
+- ```js
+  // merge
+  export { getFoo } from './getFoo';
+  export { buzz } from './buzz';
+  ```
+- ```js
+  // Fix duplicate
+  import Fizz from './Fizz';
+
+  export default Fizz;
+  export { Fizz };
+  ```
+- ```js
+  // merge
+  import foo from './foo';
+  import bar from './bar';
+  import Fizz from './Fizz';
+
+  export { foo };
+  export { bar, Fizz };
+    ```
 
 ## Sample - execute script for all files and subdirectories
 ### unsanitized
