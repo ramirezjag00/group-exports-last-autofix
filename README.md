@@ -199,6 +199,11 @@
   export { foo };
   export { bar, Fizz };
     ```
+- ```js
+  export async function foo() {
+    ...
+  }
+  ```
 
 ## Sample - execute script for all files and subdirectories
 ### unsanitized
