@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # respository: https://github.com/ramirezjag00/group-exports-last-autofix 
 
