@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# respository: https://github.com/ramirezjag00/export-sanitize-script 
+# respository: https://github.com/ramirezjag00/group-exports-last-autofix 
 
 fix_sub_directories() {
   if [[ ! -z $@ ]]; then
